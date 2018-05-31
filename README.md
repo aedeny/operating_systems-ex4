@@ -1,2 +1,3 @@
-# -operating_systems-ex4
-# -operating_systems-ex4
+# Operating Systems - Exercise 4
+
+A thread pool implementation.

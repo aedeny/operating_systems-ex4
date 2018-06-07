@@ -37,7 +37,17 @@ void *execute(void *threadPool) {
  * @param message The message to write.
  */
 void writeError(const char *message) {
-  write(STDERR_FILENO, message, strlen(message));
+  int fd = open("errors.txt", O_WRONLY | O_TRUNC | O_CREAT,
+                S_IRUSR | S_IRGRP | S_IWGRP | S_IWUSR);
+  if (fd == 0) {
+    write(STDERR_FILENO, message, sizeof(message));
+    exit(-1);
+  }
+
+  dup2(fd, 1);
+  write(STDERR_FILENO, message, sizeof(message));
+  dup2(1, fd);
+  exit(-1);
 }
 
 void tpDestroy(ThreadPool *threadPool, int shouldWaitForTasks) {

@@ -2,11 +2,10 @@
 #define __THREAD_POOL__
 
 #include <zconf.h>
-#include <wchar.h>
 #include <malloc.h>
-#include <string.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <fcntl.h>
 #include "osqueue.h"
 
 // Errors
